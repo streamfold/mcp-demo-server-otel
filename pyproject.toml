@@ -1,0 +1,24 @@
+[project]
+name = "mcp-demo-server-otel"
+version = "0.1.0"
+description = "Demo MCP Server with OpenTelemetry instrumentation"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp",
+    "opentelemetry-distro>=0.52b1",
+    "opentelemetry-exporter-otlp>=1.31.1",
+    "opentelemetry-exporter-otlp-proto-http>=1.31.1",
+    "opentelemetry-instrumentation-requests==0.52b1",
+    "opentelemetry-sdk>=1.31.1",
+    "pydantic-settings>=2.8.1",
+    "requests",
+    "rotel>=0.0.1a8",
+    "starlette>=0.46.1",
+    "uv",
+]
+
+[dependency-groups]
+dev = [
+    "typer>=0.15.2",
+]
