@@ -1,3 +1,5 @@
+import re
+
 from mcp.server.fastmcp import FastMCP
 from starlette.applications import Starlette
 from starlette.routing import Mount, Host, Route
@@ -20,6 +22,8 @@ mcp = FastMCP("MCP Demo Weather")
 @mcp.resource("resource://{zipcode}/weather")
 @tracer.start_as_current_span("weather_resource")
 def weather_resource(zipcode: str) -> str:
+    if not re.fullmatch(r'[0-9]{5}', zipcode):
+        return f"{zipcode} is not a valid zipcode"
     current_span = trace.get_current_span()
     current_span.set_attribute("operation.zipcode", zipcode)
     try:
